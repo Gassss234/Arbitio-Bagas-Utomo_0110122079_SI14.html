@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        .form-name > input {
+            width: 700px;
+            height: 36px;
+            margin-left: 285px;
+            margin-top: -100px;
+            border: 1px whitesmoke;
+            border-radius: 7px;
+        }
+        .form-email > input {
+            width: 700px;
+            height: 36px;
+            margin-left: 285px;
+            margin-top: 1px;
+            border: 1px whitesmoke;
+            border-radius: 7px;
+        }
+
+        #emailHelp {
+            margin-top: 100px;
+            margin-left: 290px;
+        }
+
+        .form-departure > input {
+            width: 700px;
+            height: 36px;
+            margin-left: 285px;
+            margin-top: 1px;
+            border: 1px whitesmoke;
+            border-radius: 7px;
+        }
+
+        .form-tickets > select{
+            width: 700px;
+            height: 36px;
+            margin-left: 285px;
+            margin-top: 1px;
+            border-radius: 7px;
+            border: 1px whitesmoke;
+        }
+
+        button {
+            margin-top: 15px;
+            margin-left: 285px;
+            border-radius: 3px;
+        }
+
+      .form-clock > input{
+        margin-left: 285px;
+        }
+
+      .container_hasil {
+        width: 100%;
+        max-width: 400px;
+        margin: 20px auto;
+        box-shadow: 1px 2px 8px rgba(0, 0, 0, 0.65);
+        padding: 10px;
+        background-color: whitesmoke;
+        margin-left: 435px;
+        }
+    </style>
+    
+</head>
+
+<body style="background-color: 	#66CDAA;">
+
+    <div class="container">
+        <form name="registrationForm" action="daftar.php" method="post" onsubmit="return validateForm()">
+            <div class="form-name">
+                <h4 style="font-family: Arial, Helvetica, sans-serif; margin-left: 285px; margin-top: 110px;"><b>Name</b></h4>
+                
+                <input type="text" name="name" placeholder="Full Name" class="form-control" required maxlength="30" minlength="5">
+            </div>
+            <div class="form-email">
+                <h4 style="font-family: Arial, Helvetica, sans-serif; margin-left: 285px; margin-top: 23px;"><b>Email</b></h4>
+                <input type="email" name="email" placeholder="Active Email" class="form-control">
+                <br>
+                <small id="emailHelp" class="form-text text-muted">Email Will Be Used To Send Notifications!</small>
+            </div>
+            <div class="form-clock">
+                <h4 style="font-family: Arial, Helvetica, sans-serif; margin-left: 285px; margin-top: 23px;"><b>Clock</b></h4>
+                <input type="time" name="clock" placeholder="Departure Time" class="form-control">
+            </div>
+            <div class="form-departure">
+                <h4 style="font-family: Arial, Helvetica, sans-serif; margin-left: 285px;"><b>Departure Purpose</b></h4>
+                <input type="text" name="departurePurpose" placeholder="City" class="form-control" required maxlength="30" minlength="5">
+            </div>
+            <div class="form-tickets">
+                <h4 style="font-family: Arial, Helvetica, sans-serif; margin-left: 285px;"><b>Number Of Tickets</b></h4>
+                <select name="numberOfTickets" class="form-control">
+                        <option value="1"> 0 </option>
+                        <option value="1"> 1 </option>
+                        <option value="2"> 2 </option>
+                        <option value="3"> 3 </option>
+                        <option value="4"> 4 </option>
+                        <option value="5"> 5 </option>
+                        <option value="6"> 6 </option>
+                        <option value="7"> 7 </option>
+                        <option value="8"> 8 </option>
+                        <option value="9"> 9 </option>
+                        <option value="10"> 10 </option>
+                    </select>
+            </div>
+            <button 
+            type="submit" 
+            class="btn btn-primary" 
+            style="font-family: Arial, Helvetica, sans-serif; 
+            background-color: grey; 
+            border: 1px grey;
+            width: 85px;
+            color: whitesmoke;"
+            >Submit</button>
+        </form>
+    </div>
+    <div class="container_hasil">
+        <h3 id="results"></h3>
+        <p id="name_results"></p>
+        <p id="email_results"></p>
+        <p id="clock_results"></p>
+        <p id="goal_results"></p>
+        <p id="ticket_results"></p>
+    </div>
+    <script>
+        function validateForm() {
+            if (document.forms["registrationForm"]["name"].value == "") {
+                alert("Name Cannot Be Empty");
+                document.forms["registrationForm"]["name"].focus();
+                return false;
+            }
+            if (document.forms["registrationForm"]["email"].value == "") {
+                alert("Email Cannot Be Empty");
+                document.forms["registrationForm"]["email"].focus();
+                return false;
+
+            }
+            if (document.forms["registrationForm"]["clock"].value == "") {
+                alert("Clock Cannot Be Empty");
+                document.forms["registrationForm"]["clock"].focus();
+                return false;
+                
+            }
+            if (document.forms["registrationForm"]["numberOfTickets"].selectedIndex < 1) {
+                alert("Select The Number Of Tickets");
+                document.forms["registrationForm"]["numberOfTickets"].focus();
+                return false;
+            }
+            if (document.forms["registrationForm"]["departurePurpose"].value == "") {
+                alert("Colomn Cannot Be Empty");
+                document.forms["registrationForm"]["departurePurpose"].focus();
+                return false;
+            } else {
+        document.getElementById("results").innerHTML = "Data";
+        document.getElementById("name_results").innerHTML = "name : " + name.value;
+        document.getElementById("email_results").innerHTML = "Email : " + email.value;
+        document.getElementById("clock_results").innerHTML = "Jam Keberangkatan : " + jam.value;
+        document.getElementById("goal_results").innerHTML = "Tujuan Keberangkatan : " + tujuan.value;
+        document.getElementById("ticket_results").innerHTML = "Jumlah Tiket : " + tiket.value;
+        return false;
+            }
+}
+    </script>
+</body>
+
+</html>

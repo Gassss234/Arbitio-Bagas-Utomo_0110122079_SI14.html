@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Document</title>
+    <style>        
+.-button 
+{background-color:#66CDAA; color: white; padding: 16px 20px; border: 1px solid whitesmoke; cursor: pointer; opacity: 0.8;
+position: fixed;bottom: 23px;right: 28px;width: 280px;}
+
+.chat- 
+{position: fixed;bottom: 0;right: 15px;border: 3px solid #f1f1f1;border-radius: 10px;z-index: 9; display: none; }
+.container {width: 300px;padding: 10px;background-color: white;}
+
+.container #write {width: 100%;border: none;background: 	#A9A9A9;margin-top: 5px;margin-bottom: 5px;resize: none;min-height: 55px;
+border-radius: 10px;}
+
+.container .chat {width: 100%;height: 205px;border-radius: 10px;margin-top: 5px; margin-bottom: 5px;background-color: #A9A9A9;}
+        
+.container .btn {background-color: #20B2AA; color: white;padding: 16px 20px;border: none;cursor: pointer;width: 305px;margin-bottom:10px;
+opacity: 0.8;}
+
+.container .cancel {background-color: 	#DC143C;}
+
+.container .btn:hover, .open-button:hover {opacity: 1; }
+
+    </style>
+</head>
+<body>
+  <button class="-button" onclick="openForm()">Chat</button>
+     <div class="chat-" id="myForm">
+        <form class="container">
+         <h1 style="font-family: arial; padding-left: 5px; padding-top: -80px;">Chat</h1>
+          <div class="chat" id="isichat"></div>
+            <label for="msg" style="font-family: arial;"><b>Message</b></label>
+            <textarea name="msg" id="write" required></textarea>
+        
+            <button type="button" class="btn" onclick="chat()">Send</button>
+            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+        </form>
+    </div>
+        
+    <script>
+        function chat() {
+        let elemen, teks, parent, spasi
+        let inp_chat = document.getElementById("write").value
+        elemen = document.createElement("span")
+        spasi = document.createElement("br")
+        teks = document.createTextNode(inp_chat)
+
+        elemen.appendChild(teks)
+        parent = document.getElementById("isichat")
+        parent.appendChild(spasi)
+        parent.appendChild(elemen)
+        }
+
+        function openForm() {
+        document.getElementById("myForm").style.display = "block";
+        }
+
+        function closeForm() {
+        document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+        
+</body>
+</html>
